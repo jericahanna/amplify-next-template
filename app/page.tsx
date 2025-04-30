@@ -23,7 +23,14 @@ export default function App() {
   }
 
   useEffect(() => {
-    listTodos();
+    const subscription = client.models.Todo.observeQuery().subscribe({
+      next: (data) => {
+        setTodos([...data.items]);
+      },
+    });
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
 
   function createTodo() {
@@ -53,4 +60,4 @@ export default function App() {
       </main>
     </>
   );
-  
+}
