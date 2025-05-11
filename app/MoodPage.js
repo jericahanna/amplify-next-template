@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 
+// all the goals and affermations of the day, to take care of yourself
+// I think self improvement and care is the best way.
 const goalsAndAffirmations = {
   happy: {
     goal: "Take 10 minutes thank yourself for all your hard work.",
@@ -26,11 +28,13 @@ const goalsAndAffirmations = {
   },
 };
 
+// the react function that renders the page
 export default function MoodPage() {
   const [mood, setMood] = useState("");
   const [goal, setGoal] = useState("");
   const [affirmation, setAffirmation] = useState("");
 
+  // event handler for mood, and goals
   const handleMoodChange = (selectedMood) => {
     setMood(selectedMood);
     const { goal, affirmation } = goalsAndAffirmations[selectedMood] || {};
@@ -38,6 +42,7 @@ export default function MoodPage() {
     setAffirmation(affirmation);
   };
 
+  // returning the information
   return (
     <>
       <Navbar />
